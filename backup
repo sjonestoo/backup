@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This script will compress and back up the folder locally then remotely
+
+SRCDIR="/home/USER/FOLDER_YOU_WANT_SAVED/"
+DESTDIR="/home/USER/Backups/"
+FILENAME=ug-$(date +%-Y%-m%-d)-$(date +%-T).tgz
+tar --create --gzip --file=$DESTDIR$FILENAME $SRCDIR
+rclone copy /home/USER/Backups remote:backup
